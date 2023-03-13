@@ -8,14 +8,55 @@ const path = require("path")
 const handlebars = require("express-handlebars")
 const bodyparser = require("body-parser")
 const mongoose = require("mongoose")
+const session = require("express-session")
+const flash = require("connect-flash")
 
 const { use } = require('./routes/admin')
+
 
 /**
  * Configurações do aplicativo.
  * 
  * @module Configurações
  */
+
+/**
+ * Configura e utiliza as bibliotecas 'session' e 'flash' no aplicativo Express.js.
+ * @function
+ * @param {Object} app - Instância do Express.js
+ * @returns {void}
+ */
+app.use(session({
+    secret: "cursodenode",
+    resave: true,
+    saveUninitialized: true
+}))
+
+/**
+ * Middleware que permite que as mensagens flash sejam passadas para as views através de objetos "locals".
+ * @function
+ * @param {Object} req - Objeto da requisição HTTP
+ * @param {Object} res - Objeto da resposta HTTP
+ * @param {Function} next - Função callback para o próximo middleware na fila
+ * @returns {void}
+ */
+app.use(flash())
+app.use((req, res, next) => {
+    /**
+     * Propriedade que recebe uma mensagem de sucesso a ser exibida na view.
+     * @type {string}
+     */
+    res.locals.success_msg = req.flash("success_msg")
+
+    /**
+     * Propriedade que recebe uma mensagem de erro a ser exibida na view.
+     * @type {string}
+     */
+    res.locals.error_msg = req.flash("error_msg")
+
+    next()
+})
+
 
 /** 
  * Configura o body-parser para analisar solicitações HTTP.
