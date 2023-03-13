@@ -44,7 +44,13 @@ const adminRouter = {
      * @returns {void}
      */
     categorias: function (req, res) {
-        res.render('admin/categorias')
+        Categoria.find().sort({date: 'desc'}).lean().then((categorias) => {
+            console.log(categorias)
+            res.render('admin/categorias', {categorias: categorias})
+        }).catch((erro) =>{
+            req.flash("error_msg", "Houve um erro ao listar")
+            res.redirect("/admin")
+        })
     },
 
     /**
