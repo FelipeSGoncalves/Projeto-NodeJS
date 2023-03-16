@@ -11,9 +11,6 @@ const mongoose = require("mongoose")
 const session = require("express-session")
 const flash = require("connect-flash")
 
-const { use } = require('./routes/admin')
-
-
 /**
  * Configurações do aplicativo.
  * 
