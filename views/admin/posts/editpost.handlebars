@@ -6,18 +6,36 @@
 <div class="card">
     <div class="card-body">
         <h3>Editar Post</h3>
-        <form method="post" action="/admin/posts/edit/">
-            <input type="hidden" id="id" name="id" value="{{categoria._id}}">
+        <form method="post" action="/admin/posts/update">
+            <input type="hidden" value="{{postagem._id}}" id="id" name="id">
 
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Nome da Categoria" class="form-control"
-                value="{{categoria.nome}}">
+            <label for="titulo">Titulo:</label>
+            <input type=" text" value="{{postagem.titulo}}" id="titulo" name="titulo" placeholder="titulo do post"
+                class="form-control">
 
             <label for="slug">Slug:</label>
-            <input type="text" id="slug" name="slug" placeholder="Slug da Categoria" class="form-control"
-                value="{{categoria.slug}}">
+            <input type="text" value="{{postagem.slug}}" id="slug" name="slug" placeholder="Slug do post"
+                class="form-control">
+
+            <label for="descricao">Descrição:</label>
+            <input type="text" value="{{postagem.descricao}}" id="descricao" name="descricao"
+                placeholder="Descrição do post" class="form-control"></input>
+
+            <label for="conteudo">Conteúdo:</label />
+            <textarea id="conteudo" name="conteudo" placeholder="Conteúdo do Post"
+                class="form-control">{{postagem.conteudo}}</textarea>
+
+            <label for="categoria">Categoria</label>
+            <select name="categoria" class="form-select">
+
+                {{#each categorias}}
+                <option value={{_id}}>{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
             <br>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-success">Editar Postagem</button>
         </form>
     </div>
 </div>

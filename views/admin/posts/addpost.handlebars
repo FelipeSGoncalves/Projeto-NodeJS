@@ -6,12 +6,7 @@
 <div class="card">
     <div class="card-body">
         <h3>Novo Post</h3>
-        <form method="post" action="/admin/posts/add">
-
-            conteudo:
-
-            categoria:
-
+        <form method="post" action="/admin/posts/create">
             <label for="titulo">Titulo:</label>
             <input type="text" id="titulo" name="titulo" placeholder="titulo do post" class="form-control">
 
@@ -19,11 +14,22 @@
             <input type="text" id="slug" name="slug" placeholder="Slug do post" class="form-control">
 
             <label for="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" placeholder="Descrição do post" class="form-control"></input>
-            
-            <label for="conteudo">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" placeholder="Descrição do post"
+                class="form-control"></input>
+
+            <label for="conteudo">Conteúdo:</label>
             <textarea id="conteudo" name="conteudo" placeholder="Conteúdo do Post" class="form-control"></textarea>
 
+            <label for="categoria">Categoria</label>
+            <select name="categoria" class="form-select">
+
+                {{#each categorias}}
+                <option value={{_id}}>{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
+            <br>
             <button type="submit" class="btn btn-success">Salvar</button>
         </form>
     </div>

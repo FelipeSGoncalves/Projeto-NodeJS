@@ -1,0 +1,28 @@
+<div class="jumbotron mt-5">
+    <h1 class="display-4">Bem-vindo(a) ao APP!</h1>
+    <p class="lead">Aplicação Node + MongoDB + Express com postagens e categorias personalizadas.</p>
+    <p>Desenvolvida com o objetivo de colocar em prática meus estudos sobre NodeJS</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Crie uma conta</a>
+    </p>
+</div>
+
+<hr class="my-4">
+
+<h2>Postagens Recentes</h2>
+
+{{#each posts}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>{{titulo}}</h3>
+        <p>{{descricao}}</p>
+        <a href="/post/{{slug}}"><button class="btn btn-success">Leia mais</button></a>
+        <hr>
+        <small>Categoria: {{categoria.nome}}</small><br>
+        <small>Data de publicação: {{data}}</small>
+    </div>
+</div>
+{{else}}
+<h5>Nenhum Post</h5>
+
+{{/each}}
