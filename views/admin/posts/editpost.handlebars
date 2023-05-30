@@ -7,23 +7,23 @@
     <div class="card-body">
         <h3>Editar Post</h3>
         <form method="post" action="/admin/posts/update">
-            <input type="hidden" value="{{postagem._id}}" id="id" name="id">
+            <input type="hidden" value="{{post._id}}" id="id" name="id">
 
             <label for="titulo">Titulo:</label>
-            <input type=" text" value="{{postagem.titulo}}" id="titulo" name="titulo" placeholder="titulo do post"
+            <input type=" text" value="{{post.titulo}}" id="titulo" name="titulo" placeholder="titulo do post"
                 class="form-control">
 
             <label for="slug">Slug:</label>
-            <input type="text" value="{{postagem.slug}}" id="slug" name="slug" placeholder="Slug do post"
+            <input type="text" value="{{post.slug}}" id="slug" name="slug" placeholder="Slug do post"
                 class="form-control">
 
             <label for="descricao">Descrição:</label>
-            <input type="text" value="{{postagem.descricao}}" id="descricao" name="descricao"
+            <input type="text" value="{{post.descricao}}" id="descricao" name="descricao"
                 placeholder="Descrição do post" class="form-control"></input>
 
             <label for="conteudo">Conteúdo:</label />
             <textarea id="conteudo" name="conteudo" placeholder="Conteúdo do Post"
-                class="form-control">{{postagem.conteudo}}</textarea>
+                class="form-control">{{post.conteudo}}</textarea>
 
             <label for="categoria">Categoria</label>
             <select name="categoria" class="form-select">
@@ -35,7 +35,7 @@
                 {{/each}}
             </select>
             <br>
-            <button type="submit" class="btn btn-success">Editar Postagem</button>
+            <button type="submit" class="btn btn-success">Editar Post</button>
         </form>
     </div>
 </div>

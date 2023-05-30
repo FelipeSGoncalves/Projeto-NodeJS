@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const Postagem = Schema({
+const Post = Schema({
     titulo: {
         type: String,
         required: true
@@ -29,4 +29,4 @@ const Postagem = Schema({
     }
 })
 
-mongoose.model("postagens", Postagem)
+mongoose.model("posts", Post)

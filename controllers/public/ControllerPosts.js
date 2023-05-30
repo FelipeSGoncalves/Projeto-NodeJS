@@ -1,9 +1,8 @@
 
 const mongoose = require('mongoose')
-const { post } = require('../../routes/public')
 
-require('../../models/Postagens')
-const Posts = mongoose.model('postagens')
+require('../../models/Post')
+const Posts = mongoose.model('posts')
 
 require('../../models/Categorias')
 const Categoria = mongoose.model('categorias')
@@ -14,7 +13,7 @@ exports.posts = {
         Posts.find().lean().populate("categoria").sort({ data: "desc" }).then((posts) => {
             res.render("index", { posts: posts })
         }).catch((erro) => {
-            req.flash("error_msg", "Houve um erro ao listar as postagens")
+            req.flash("error_msg", "Houve um erro ao listar os posts.")
             res.redirect("/404")
         })
     },
@@ -26,7 +25,7 @@ exports.posts = {
     postPage(req, res) {
         Posts.findOne({ slug: req.params.slug }).lean().then((post) => {
             if (post) {
-                res.render("post/index", { post: post })
+                res.render("posts/index", { post: post })
             } else {
                 req.flash("error_msg", "Post não encontrado")
                 res.redirect("/")

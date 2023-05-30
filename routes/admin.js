@@ -3,6 +3,7 @@ const router = express.Router()
 
 const adminCategorias = require('../controllers/admin/ControllerCategorias')
 const adminPosts = require('../controllers/admin/ControllerPosts');
+const adminUsuarios = require('../controllers/admin/ControllerUsuarios');
 
 function index(req, res) {
     res.render('admin/index')
@@ -23,5 +24,7 @@ router.get('/posts/add', adminPosts.posts.add)
 router.get('/posts/edit/:id', adminPosts.posts.edit)
 router.post('/posts/update', adminPosts.posts.update)
 router.get('/posts/delete/:id', adminPosts.posts.delete)
+
+router.get('/users', adminUsuarios.usuarios.list)
 
 module.exports = router

@@ -4,6 +4,8 @@ const port = 3000
 
 const admin = require("./routes/admin")
 const public = require("./routes/public")
+const usuario = require("./routes/usuario")
+
 
 const path = require("path")
 const handlebars = require("express-handlebars")
@@ -55,6 +57,7 @@ app.use((req, res, next) => {
 
 app.use("/admin", admin)
 app.use("/", public)
+app.use("/user", usuario)
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

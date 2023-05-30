@@ -1,8 +1,8 @@
 
 const mongoose = require('mongoose')
 
-require('../../models/Postagens')
-const Posts = mongoose.model('postagens')
+// require('../../models/Posts')
+// const Posts = mongoose.model('posts')
 
 require('../../models/Categorias')
 const Categoria = mongoose.model('categorias')
@@ -23,15 +23,16 @@ exports.categorias = {
     },
 
     create(req, res) {
-
         var erros = []
+
         const novaCategoria = {
             nome: req.body.nome,
             slug: req.body.slug
         }
 
-        if (novaCategoria.nome == "" || novaCategoria.slug == "") {
-            erros.push({ texto: "Preencha todos os campos!" })
+        if (!novaCategoria.nome || !novaCategoria.slug ||
+            novaCategoria.nome.trim() === "" || novaCategoria.slug.trim() === "") {
+            erros.push({ texto: "Preencha todos os campos!" });
         }
 
         if (novaCategoria.nome.length < 2) {
@@ -41,20 +42,11 @@ exports.categorias = {
         if (erros.length > 0) {
             res.render("admin/categorias/addcategorias", { erros: erros })
         } else {
-            // Salva o objeto novaCategoria no banco de dados.
             new Categoria(novaCategoria).save().then(() => {
-                /**
-                 * Mensagem de sucesso que será exibida na próxima requisição.
-                 * @type {string}
-                 */
                 const successMsg = "Categoria criada com sucesso!"
                 req.flash("success_msg", successMsg)
                 res.redirect("/admin/categorias")
             }).catch((erro) => {
-                /**
-                 * Mensagem de erro que será exibida na próxima requisição.
-                 * @type {string}
-                 */
                 const errorMsg = "Erro ao salvar categoria! Tente novamente."
                 req.flash("error_msg", errorMsg)
                 res.redirect("/admin")
@@ -74,7 +66,6 @@ exports.categorias = {
 
 
     update(req, res) {
-
         Categoria.updateOne(
             { _id: req.body.id },
             { $set: { nome: req.body.nome, slug: req.body.slug } }
@@ -98,4 +89,3 @@ exports.categorias = {
         })
     }
 }
-
