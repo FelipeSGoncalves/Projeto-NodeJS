@@ -4,7 +4,10 @@ const mongoose = require('mongoose')
 require('../../models/Usuario')
 const Usuarios = mongoose.model('usuarios')
 
+
+
 const bcrypt = require("bcryptjs")
+const passport = require('passport')
 
 exports.usuarios = {
 
@@ -76,5 +79,14 @@ exports.usuarios = {
 
     login(req, res) {
         res.render('usuarios/login')
+    },
+
+    postLogin(req, res, next) {
+
+        passport.authenticate("local", {
+            successRedirect: "/",
+            failureRedirect: "/user/login",
+            failureFlash: true
+        })(req, res, next)
     }
 }

@@ -1,0 +1,17 @@
+<h1>Usuários Cadastrados</h1>
+<hr>
+{{#each usuarios}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>{{nome}}</h3>
+        <p>{{email}}</p>
+        <p>{{cargo}}</p>
+        <a href="users/delete/{{_id}}" class="float-end">
+            <button class="btn btn-danger">Excluir</button>
+        </a>
+    </div>
+</div>
+{{else}}
+<h5>Nenhum Usuario</h5>
+
+{{/each}}
