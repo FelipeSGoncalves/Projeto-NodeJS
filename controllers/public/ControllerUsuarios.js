@@ -56,7 +56,7 @@ exports.usuarios = {
                                 new Usuarios(novoUsuario).save().then(() => {
                                     const successMsg = "Usuário criado com sucesso!"
                                     req.flash("success_msg", successMsg)
-                                    res.redirect("/")
+                                    res.redirect("/user/login")
                                 }).catch((erro) => {
                                     const errorMsg = "Erro ao registrar o usuário! Tente novamente."
                                     req.flash("error_msg", errorMsg)
@@ -88,5 +88,16 @@ exports.usuarios = {
             failureRedirect: "/user/login",
             failureFlash: true
         })(req, res, next)
+    },
+
+    logout(req, res) {
+        req.logout(function (err) {
+            if (err) {
+                console.log(err);
+            }
+            req.flash("success_msg", "Logout realizado com sucesso!")
+            res.redirect("/")
+        });
+
     }
 }
